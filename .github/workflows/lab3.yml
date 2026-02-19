@@ -24,4 +24,22 @@ jobs:
         run: |
           pwd
           ls -la
+      - name: Runner system information
+        run: |
+          echo "== OS / Kernel =="
+          uname -a
+
+          echo
+          echo "== CPU =="
+          nproc || true
+          lscpu | head -n 40 || true
+
+          echo
+          echo "== Memory =="
+          free -h || true
+
+          echo
+          echo "== Disk =="
+          df -h || true
+
 
