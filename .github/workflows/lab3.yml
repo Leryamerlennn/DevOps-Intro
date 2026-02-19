@@ -1,0 +1,45 @@
+name: Lab 3 - CI Intro
+
+on:
+  push:
+    branches:
+      - feature/lab3
+  workflow_dispatch:
+
+jobs:
+  quickstart:
+    name: Quickstart job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show trigger info
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Ref:   ${{ github.ref }}"
+          echo "SHA:   ${{ github.sha }}"
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: List repo files (evidence)
+        run: |
+          pwd
+          ls -la
+      - name: Runner system information
+        run: |
+          echo "== OS / Kernel =="
+          uname -a
+
+          echo
+          echo "== CPU =="
+          nproc || true
+          lscpu | head -n 40 || true
+
+          echo
+          echo "== Memory =="
+          free -h || true
+
+          echo
+          echo "== Disk =="
+          df -h || true
+
+
